@@ -1,2 +1,2 @@
 # Python_Project
-College oython spotify clone project
+College python spotify clone project
