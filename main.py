@@ -4,9 +4,9 @@ import copy
 # do you want to exit again aanf again
 #some desgin issue
 #
-questions_db=["Enter your CGPN"]
+questions_db=["Enter your CGPA N","sun sets in the S","animals are : M","Our college is : A"]
 option_2_q_db={}
-ans_2_q_db={"Enter your CGPN":"4"}#for mutiple correct and single correct only (to use the quesiton string as a key)
+ans_2_q_db={"Enter your CGPA N":"4","sun sets in the S":"D","animals are : M":["A","C"],"Our college is : A":"IIITB"}#for mutiple correct and single correct only (to use the quesiton string as a key)
 questions_db_marks=["4"]
 question_types={"N":"Numerical","S":"Single Correct","M":"Multiple Choices","A":"Short Answer"}
 
@@ -94,7 +94,7 @@ def answer_mdoe():
     question_random=[]
     marks_random=[]
     answer_submitted={}
-    while(len(question_non_random)):# makes a list of random questiions
+    while(len(question_non_random)):# makes a list of random questions
         i=random.randint(0,len(question_non_random)-1)
         marks_random.append(marks_non_random[i])
         question_random.append(question_non_random[i])
@@ -146,7 +146,7 @@ def main_menu():
             answer_mdoe()
         else:
             print("Input a valid mode")
-        R=input("Do you want to exit ?").lower()
+            R=input("Do you want to exit ?(y/n)").lower()
         if (R=="y"):
             Running=0
 main_menu()
