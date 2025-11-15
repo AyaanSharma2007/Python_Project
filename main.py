@@ -115,7 +115,8 @@ def answer_mdoe():
                             print("Please enter a number")
                 else:
                         invaid=0
-            answer_submitted[current_question]=ans
+                if (invaid==0):
+                    answer_submitted[current_question]=ans
         else :# for s and M case
             print(question_types.get(current_question[-1])) 
             option_list=[]
