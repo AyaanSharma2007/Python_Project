@@ -9,8 +9,7 @@ option_2_q_db={}
 ans_2_q_db={"Enter your CGPN":"4"}#for mutiple correct and single correct only (to use the quesiton string as a key)
 questions_db_marks=["4"]
 question_types={"N":"Numerical","S":"Single Correct","M":"Multiple Choices","A":"Short Answer"}
-def printQ(a):#can i use a lambda here
-    print(a[:-2],end=" ")
+
 def question_mode():
     #2 modes see the quesitons sorted and input questions
     N=int(input("Select Mode:"))
@@ -18,7 +17,7 @@ def question_mode():
         for index in range(len(questions_db)):
             print("--------------------- Questions-------------------------------")
             print(f" {index+1}.",end="")
-            printQ(questions_db[index])
+            print(questions_db[index][:-1])
             print(" ")
             print(f"({question_types.get(questions_db[index][-1])})")
             
@@ -62,8 +61,18 @@ def question_mode():
                     temp_options.append(option)
                 ans_2_q_db[question_text+question_type.upper()]=temp_options
             else:#keep the same for (Numberic case too)
-                temp_answer=input("Enter the correct answer :").lower()
-                ans_2_q_db[question_text]=temp_answer
+                invalid=1
+                while(invalid):
+                    temp_answer=input("Enter the correct answer :").lower()
+                    if (question_type=="N") :
+                        if (temp_answer.isdigit() is True):
+                            invalid=0
+                        else:
+                            print("Please enter a number")
+                    else:
+                        invalid=0
+                    if(invalid==0):
+                        ans_2_q_db[question_text+question_type.upper()]=temp_answer
             runt=1
             while(runt):#ask for time 
                 question_time=input("Set time limt")# add a number to ask for no time limit in that question
@@ -95,8 +104,17 @@ def answer_mdoe():
         current_question=question_random[i]
         print(f"Q{i+1}. {current_question[:-2]}")
         print(f"{question_types.get(current_question[-1])}          Marks={marks_random[i]}")   
-        if(current_question[-1]=="N"or current_question[-1]=="A"):#for n and A case
-            ans=input("Enter your answer")
+        if(current_question[-1]=="N"or current_question[-1]=="A"):
+            invaid=1
+            while(invaid):
+                ans=input("Enter your answer").lower()
+                if (current_question[-1]=="N") :
+                    if (ans.isdigit() is True):
+                            invaid=0
+                    else:
+                            print("Please enter a number")
+                else:
+                        invaid=0
             answer_submitted[current_question]=ans
         else :# for s and M case
             print(question_types.get(current_question[-1])) 
@@ -127,7 +145,7 @@ def main_menu():
             answer_mdoe()
         else:
             print("Input a valid mode")
-            R=input("Do you want to exit ?").lower()
+        R=input("Do you want to exit ?").lower()
         if (R=="y"):
             Running=0
 main_menu()
