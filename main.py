@@ -124,6 +124,7 @@ def answer_mode():
             for j in range(len(option_list)):
                 print(f"{j+1}. {option_list[j]}")
             temp_options=[]
+            print(f"there is/are {len(ans_2_q_db.get(current_question))} correct answer(s).")
             for j in range(len(ans_2_q_db.get(current_question))): #filling the temp options list with the selected answers
                 print(f"Enter Option No.{j+1} ")
                 temp_options.append(input())
