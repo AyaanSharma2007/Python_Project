@@ -5,9 +5,9 @@ import copy
 #some desgin issue
 #
 questions_db=["Enter your CGPA N","sun sets in the S","animals are : M","Our college is : A"]
-option_2_q_db={"animals are : M":["table","chair","dog","cat"],"Our college is : A":["iitb","iiitb","reyansh college of hotel management","baua don memorial"]}
-ans_2_q_db={"Enter your CGPA N":"4","sun sets in the S":4,"animals are : M":[3,4],"Our college is : A":"iiitb"}#for mutiple correct and single correct only (to use the quesiton string as a key)
-questions_db_marks=["4"]
+option_2_q_db={"animals are : M":["cow","chair","dog","cat"],"Our college is : A":["iitb","iiitb","reyansh college of hotel management","baua don memorial"],"sun sets in the S":["north","south","east","west"]}
+ans_2_q_db={"Enter your CGPA N":"4","sun sets in the S":[4],"animals are : M":[1,3,4],"Our college is : A":"iiitb"}#for mutiple correct and single correct only (to use the quesiton string as a key)
+questions_db_marks=["4","4","4","4"]
 question_types={"N":"Numerical","S":"Single Correct","M":"Multiple Choices","A":"Short Answer"}
 
 def question_mode():
@@ -87,7 +87,7 @@ def question_mode():
             run=input("Do you want continue (Press Y for yes)").upper()
     else:#this is trigger need
         print("Please select a Valid mode ")
-def answer_mdoe():
+def answer_mode():
     #make a deepcopy of all the questions
     question_non_random=copy.deepcopy(questions_db)
     marks_non_random=copy.deepcopy(questions_db_marks)
@@ -119,19 +119,20 @@ def answer_mdoe():
                     answer_submitted[current_question]=ans
         else :# for s and M case
             print(question_types.get(current_question[-1])) 
-            option_list=[]
-            option_list=option_2_q_db.get(current_question)#weird way the code is storting    
+            option_list=list()
+            option_list=list(option_2_q_db.get(current_question))#list of options    
             for j in range(len(option_list)):
                 print(f"{j+1}. {option_list[j]}")
             temp_options=[]
-            for j in range(len(ans_2_q_db.get(current_question))): #for now you the correct number of answers
+            for j in range(len(ans_2_q_db.get(current_question))): #filling the temp options list with the selected answers
                 print(f"Enter Option No.{j+1} ")
                 temp_options.append(input())
             temp_options=tuple(temp_options)
             answer_submitted[current_question]=temp_options
     #after all the questions are done show the answer
     for k,v in answer_submitted.items():
-        print(f"Q{question_random.index((k))+1}. Your answer is {v} ({marks_random[i]})")
+        print(f"Q{question_random.index((k))+1}. Your answer is {v} [ {marks_random[i]} marks ]",end=" ")
+        # if
         print(" ")
     #  do you wish to submit 
 def main_menu():
@@ -143,10 +144,10 @@ def main_menu():
             question_mode()
         elif (N=="2"):
             print("========================Answering Mode===========================")
-            answer_mdoe()
+            answer_mode()
         else:
             print("Input a valid mode")
             R=input("Do you want to exit ?(y/n)").lower()
-        if (R=="y"):
-            Running=0
+            if (R=="y"):
+                Running=0
 main_menu()
