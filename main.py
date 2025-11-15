@@ -5,8 +5,8 @@ import copy
 #some desgin issue
 #
 questions_db=["Enter your CGPA N","sun sets in the S","animals are : M","Our college is : A"]
-option_2_q_db={}
-ans_2_q_db={"Enter your CGPA N":"4","sun sets in the S":"D","animals are : M":["A","C"],"Our college is : A":"IIITB"}#for mutiple correct and single correct only (to use the quesiton string as a key)
+option_2_q_db={"animals are : M":["table","chair","dog","cat"],"Our college is : A":[]}
+ans_2_q_db={"Enter your CGPA N":"4","sun sets in the S":4,"animals are : M":[3,4],"Our college is : A":"iiitb"}#for mutiple correct and single correct only (to use the quesiton string as a key)
 questions_db_marks=["4"]
 question_types={"N":"Numerical","S":"Single Correct","M":"Multiple Choices","A":"Short Answer"}
 
